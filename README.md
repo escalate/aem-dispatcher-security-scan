@@ -2,7 +2,9 @@
 
 A commandline tool to perfom an active security scan against a [AEM Dispatcher](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/dispatcher.html).
 
-This tool tries to unify all known security relevant AEM Dispatcher URLs from the internet. If you know some more URLs please open a Github issue to report them.
+This tool tries to unify all known security relevant AEM Dispatcher URLs from the internet.
+
+If you know some more URLs, please open a Github issue to report them.
 
 ## Usage
 ```
