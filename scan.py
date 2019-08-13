@@ -17,6 +17,7 @@ class Scan(object):
         """Constructor"""
         self.website_url = None
         self.website_page_path = None
+        self.request_timeout = None
         self.path_list = self.load_path_list('aem-sec-paths.txt')
 
     def print_configuration(self):
@@ -25,6 +26,8 @@ class Scan(object):
             url=self.website_url))
         logging.debug('Website page path is set to "{path}"'.format(
             path=self.website_page_path))
+        logging.debug('Request timeout is set to "{timeout}"'.format(
+            timeout=self.request_timeout))
 
     @staticmethod
     def load_path_list(file_path):
@@ -47,7 +50,7 @@ class Scan(object):
         try:
             r = requests.get(
                 url,
-                timeout=60)
+                timeout=self.request_timeout)
         except requests.exceptions.RequestException as e:
             logging.error('{err} for {url}'.format(err=e, url=url))
         return r
@@ -64,7 +67,7 @@ class Scan(object):
             r = requests.get(
                 url,
                 headers=headers,
-                timeout=60)
+                timeout=self.request_timeout)
         except requests.exceptions.RequestException as e:
             logging.error('{err} for {url}'.format(err=e, url=url))
         return r
@@ -101,6 +104,9 @@ class Scan(object):
               help='Set URL of website e.g. http://www.adobe.com')
 @click.option('--website-page-path',
               help='Set path of website page e.g. /content/geometrixx/en')
+@click.option('--timeout',
+              default=10,
+              help='Set timeout for http requests')
 @click.option('--verbose',
               is_flag=True,
               help='Enable verbose logging output')
@@ -120,6 +126,7 @@ def cli(*args, **kwargs):
     # Handle options
     scan.website_url = kwargs.get('website_url')
     scan.website_page_path = kwargs.get('website_page_path')
+    scan.request_timeout = kwargs.get('timeout')
     scan.print_configuration()
 
     # Run tests
