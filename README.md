@@ -17,7 +17,9 @@ Usage: scan.py [OPTIONS]
 Options:
   --website-url TEXT        Set URL of website e.g. http://www.adobe.com
                             [required]
-  --website-page-path TEXT  Set path of website page e.g. /content/geometrixx/en
+  --website-page-path TEXT  Set path of website page e.g.
+                            /content/geometrixx/en
+  --timeout INTEGER         Set timeout for http requests
   --verbose                 Enable verbose logging output
   --help                    Show this message and exit.
 ```
