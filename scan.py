@@ -47,6 +47,7 @@ class Scan(object):
         """Performs a single URL test"""
         url = '{website}{path}'.format(website=self.website_url,
                                        path=self.replace_page_path(path))
+        r = None
         try:
             r = requests.get(
                 url,
@@ -63,6 +64,7 @@ class Scan(object):
             'CQ-Handle': '/content',
             'CQ-Path': '/content',
             }
+        r = None
         try:
             r = requests.get(
                 url,
@@ -80,16 +82,19 @@ class Scan(object):
 
         for path in self.path_list:
             r = self.perform_url_test(path.strip())
-            test_results.append({'url': r.url, 'status_code': r.status_code})
             vulnerabilities_total += 1
-            if r.status_code != requests.codes.not_found:
-                vulnerabilities_hit += 1
+            if r is not None:
+                test_results.append({'url': r.url,
+                                     'status_code': r.status_code})
+                if r.status_code != requests.codes.not_found:
+                    vulnerabilities_hit += 1
 
         r = self.perform_dispatcher_invalidate_cache_test()
-        test_results.append({'url': r.url, 'status_code': r.status_code})
         vulnerabilities_total += 1
-        if r.status_code != requests.codes.not_found:
-            vulnerabilities_hit += 1
+        if r is not None:
+            test_results.append({'url': r.url, 'status_code': r.status_code})
+            if r.status_code != requests.codes.not_found:
+                vulnerabilities_hit += 1
 
         summary = 'Summary: Found {hit} of {total} security relevant AEM Dispatcher URLs'.format(
             hit=vulnerabilities_hit,
