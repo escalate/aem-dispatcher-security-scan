@@ -143,6 +143,7 @@ def cli(*args, **kwargs):
             code=test_result.get('status_code'),
             url=test_result.get('url')
             ))
+    click.echo("")
     click.echo(summary)
 
 
