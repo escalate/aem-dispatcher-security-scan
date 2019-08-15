@@ -74,33 +74,13 @@ class Scan(object):
             logging.error('{err} for {url}'.format(err=e, url=url))
         return r
 
-    def perform_all_tests(self):
-        """Performs all tests and returns their results"""
-        test_results = []
-        vulnerabilities_total = 0
-        vulnerabilities_hit = 0
-
-        for path in self.path_list:
-            r = self.perform_url_test(path.strip())
-            vulnerabilities_total += 1
-            if r is not None:
-                test_results.append({'url': r.url,
-                                     'status_code': r.status_code})
-                if r.status_code != requests.codes.not_found:
-                    vulnerabilities_hit += 1
-
-        r = self.perform_dispatcher_invalidate_cache_test()
-        vulnerabilities_total += 1
-        if r is not None:
-            test_results.append({'url': r.url, 'status_code': r.status_code})
-            if r.status_code != requests.codes.not_found:
-                vulnerabilities_hit += 1
-
-        summary = 'Summary: Found {hit} of {total} security relevant AEM Dispatcher URLs'.format(
-            hit=vulnerabilities_hit,
-            total=vulnerabilities_total)
-
-        return test_results, summary
+    @staticmethod
+    def asses_test_result(status_code):
+        """Assesses whether the test result is a hit or not"""
+        if status_code != requests.codes.not_found:
+            return True
+        else:
+            return False
 
 
 @click.command()
@@ -135,16 +115,38 @@ def cli(*args, **kwargs):
     scan.print_configuration()
 
     # Run tests
+    vulnerabilities_total = 0
+    vulnerabilities_hit = 0
+
     click.echo('Start active security scan of URL {website}'.format(
         website=scan.website_url))
-    test_results, summary = scan.perform_all_tests()
-    for test_result in test_results:
-        click.echo('{code}: {url}'.format(
-            code=test_result.get('status_code'),
-            url=test_result.get('url')
-            ))
     click.echo("")
-    click.echo(summary)
+
+    for path in scan.path_list:
+        r = scan.perform_url_test(path.strip())
+        vulnerabilities_total += 1
+        if r is not None:
+            if scan.asses_test_result(r.status_code):
+                vulnerabilities_hit += 1
+                click.echo('{code}: {url}'.format(
+                    code=r.status_code,
+                    url=r.url
+                ))
+
+    r = scan.perform_dispatcher_invalidate_cache_test()
+    vulnerabilities_total += 1
+    if r is not None:
+        if scan.asses_test_result(r.status_code):
+            vulnerabilities_hit += 1
+            click.echo('{code}: {url}'.format(
+                code=r.status_code,
+                url=r.url
+            ))
+
+    click.echo("")
+    click.echo('Summary: Found {hit} of {total} security relevant AEM Dispatcher URLs'.format(  # noqa: E501
+        hit=vulnerabilities_hit,
+        total=vulnerabilities_total))
 
 
 if __name__ == '__main__':
