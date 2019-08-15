@@ -91,7 +91,7 @@ class Scan(object):
               help='Set path of website page e.g. /content/geometrixx/en')
 @click.option('--timeout',
               default=10.0,
-              help='Set timeout for http requests in secs e.g. 30.0')
+              help='Set timeout for http requests in secs e.g. 1.5 or 5')
 @click.option('--verbose',
               is_flag=True,
               help='Enable verbose logging output')

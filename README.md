@@ -18,7 +18,7 @@ Options:
   --website-url TEXT        Set URL of website e.g. http://www.adobe.com
                             [required]
   --website-page-path TEXT  Set path of website page e.g. /content/geometrixx/en
-  --timeout FLOAT           Set timeout for http requests in secs e.g. 30.0
+  --timeout FLOAT           Set timeout for http requests in secs e.g. 1.5 or 5
   --verbose                 Enable verbose logging output
   --help                    Show this message and exit.
 ```
