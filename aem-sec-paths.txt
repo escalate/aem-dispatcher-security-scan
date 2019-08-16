@@ -3,6 +3,7 @@
 /.4.2.1...json
 /admin
 /adminui
+/api.json
 /apps.1.json
 /apps.feed.xml
 /apps.json
@@ -94,6 +95,7 @@
 /content.1.json
 /content.1.xml
 /content/.4.2.1...json
+/content/add_valid_path_to_a_page.childrenlist.json
 /content/add_valid_path_to_a_page.docview.json
 /content/add_valid_path_to_a_page.docview.xml
 /content/add_valid_path_to_a_page.html?debug=layout
@@ -106,6 +108,7 @@
 /content/add_valid_path_to_a_page.qu%65ry.js%6Fn?statement=//*
 /content/add_valid_path_to_a_page.query.json?statement=//*
 /content/add_valid_path_to_a_page.query.json?statement=//*#/(@transportPassword%20|%20@transportUri%20|%20@transportUser)
+/content/add_valid_path_to_a_page.search.json
 /content/add_valid_path_to_a_page.sysview.xml
 /content.assetsearch.json?query=*&start=0&limit=10&random=123
 /content.blueprint.json
@@ -268,6 +271,7 @@
 /mobileformsivs
 /projects
 /ReaderExtensions
+/services/tagfilter
 /siteadmin
 /system/admin
 /system/bgservlets/test.css
