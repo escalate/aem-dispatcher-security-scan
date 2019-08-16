@@ -73,6 +73,7 @@ $ docker run scan \
 * [0ang3el/aem-hacker](https://github.com/0ang3el/aem-hacker)
 * [danielmiessler/SecLists](https://github.com/danielmiessler/SecLists)
 * [aem-design/ansible-role-aem-security-test](https://github.com/aem-design/ansible-role-aem-security-test)
+* [blogs.perficientdigital.com](https://blogs.perficientdigital.com/2019/01/10/mastering-aem-dispatcher-part-7-securing-the-dispatcher/)
 
 ## License
 MIT
