@@ -3,6 +3,7 @@
 /.4.2.1...json
 /admin
 /adminui
+/aem/inbox
 /api.json
 /apps.1.json
 /apps.feed.xml
@@ -206,6 +207,7 @@
 /home/users/a/admin/profile.json
 /home/users/a/admin/profile.xml
 /home.xml
+/inbox
 /.infinity.json
 /jcr:content.json
 /_jcr_system/_jcr_versionStorage.json
@@ -261,6 +263,7 @@
 /libs/opensocial/proxy?.css
 /libs/wcm/core/content/siteadmin.html
 /libs.xml
+/mcmadmin
 /miscadmin
 /miscadmin#/etc/blueprints
 /miscadmin#/etc/designs
@@ -318,6 +321,7 @@
 /tagging
 /.tidy.6.json
 /.tidy.infinity.json
+/useradmin
 /var.1.json
 /var.1.xml
 /var/classes.1.json
