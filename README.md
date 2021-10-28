@@ -71,6 +71,7 @@ $ docker run scan \
 ## References
 * [docs.adobe.com](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html#testing-dispatcher-security)
 * [0ang3el/aem-hacker](https://github.com/0ang3el/aem-hacker)
+* [emadshanab/Adobe-Experience-Manager](https://github.com/emadshanab/Adobe-Experience-Manager)
 * [danielmiessler/seclists](https://github.com/danielmiessler/SecLists)
 * [aem-design/ansible-role-aem-security-test](https://github.com/aem-design/ansible-role-aem-security-test)
 * [cognifide/securecq](https://github.com/Cognifide/SecureCQ)
