@@ -238,7 +238,6 @@
 /crx/
 /crx/de
 /crx/de/index.jsp
-CRXDE Lite/CRX
 /crx/explorer/browser/index.jsp
 /crx/explorer/index.jsp
 /crx/explorer/nodetypes/index.jsp
