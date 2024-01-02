@@ -4,9 +4,10 @@
 """Commandline interface
 to control Scan class"""
 
-import requests
 import logging
+
 import click
+import requests
 
 
 class Scan(object):
