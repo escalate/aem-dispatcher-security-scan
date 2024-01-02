@@ -46,8 +46,10 @@ class Scan(object):
 
     def perform_url_test(self, path):
         """Performs a single URL test"""
-        url = '{website}{path}'.format(website=self.website_url,
-                                       path=self.replace_page_path(path))
+        url = '{website}{path}'.format(
+            website=self.website_url,
+            path=self.replace_page_path(path)
+        )
         r = None
         try:
             r = requests.get(
@@ -59,8 +61,10 @@ class Scan(object):
 
     def perform_dispatcher_invalidate_cache_test(self):
         """Performs distpacher invalidate cache test"""
-        url = '{website}{path}'.format(website=self.website_url,
-                                       path='/dispatcher/invalidate.cache')
+        url = '{website}{path}'.format(
+            website=self.website_url,
+            path='/dispatcher/invalidate.cache'
+        )
         headers = {
             'CQ-Handle': '/content',
             'CQ-Path': '/content',
@@ -85,17 +89,25 @@ class Scan(object):
 
 
 @click.command()
-@click.option('--website-url',
-              required=True,
-              help='Set URL of website e.g. http://www.adobe.com')
-@click.option('--website-page-path',
-              help='Set path of website page e.g. /content/geometrixx/en')
-@click.option('--timeout',
-              default=10.0,
-              help='Set timeout for http requests in secs e.g. 1.5 or 5')
-@click.option('--verbose',
-              is_flag=True,
-              help='Enable verbose logging output')
+@click.option(
+    '--website-url',
+    required=True,
+    help='Set URL of website e.g. http://www.adobe.com',
+)
+@click.option(
+    '--website-page-path',
+    help='Set path of website page e.g. /content/geometrixx/en',
+)
+@click.option(
+    '--timeout',
+    default=10.0,
+    help='Set timeout for http requests in secs e.g. 1.5 or 5',
+)
+@click.option(
+    '--verbose',
+    is_flag=True,
+    help='Enable verbose logging output',
+)
 def cli(*args, **kwargs):
     """Commandline interface for AEM Dispatcher Security Scan"""
 
