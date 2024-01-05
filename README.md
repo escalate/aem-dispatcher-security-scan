@@ -1,3 +1,5 @@
+[![Tests](https://github.com/escalate/aem-dispatcher-security-scan/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/escalate/aem-dispatcher-security-scan/actions/workflows/tests.yml)
+
 # AEM Dispatcher Security Scan
 
 A commandline tool to perfom an active security scan against a [AEM Dispatcher](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/dispatcher.html).
@@ -64,10 +66,12 @@ $ docker run scan \
 ```
 
 ## Dependencies
+
 * [click](https://pypi.python.org/pypi/click)
 * [requests](https://pypi.python.org/pypi/requests)
 
 ## References
+
 * [docs.adobe.com](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html#testing-dispatcher-security)
 * [0ang3el/aem-hacker](https://github.com/0ang3el/aem-hacker)
 * [emadshanab/Adobe-Experience-Manager](https://github.com/emadshanab/Adobe-Experience-Manager)
@@ -78,4 +82,5 @@ $ docker run scan \
 * [infosecinstitute.com](https://resources.infosecinstitute.com/adobe-cq-pentesting-guide-part-1/)
 
 ## License
+
 MIT
