@@ -9,6 +9,7 @@ This tool tries to unify all known security relevant AEM Dispatcher URLs from th
 If you know some more URLs, please open a Github issue to report them.
 
 ## Usage
+
 ```
 $ ./scan.py --help
 
