@@ -1,2 +1,2 @@
-Click==8.1.7
+Click==8.1.8
 requests==2.32.3
