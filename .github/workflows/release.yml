@@ -1,14 +1,32 @@
 name: Release
-'on':
-  workflow_run:
-    workflows:
-      - Test
-    branches:
-      - master
-    types:
-      - completed
-jobs:
+on:
   release:
-    name: Release
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    uses: escalate/github-actions-workflows/.github/workflows/release.yml@master
+    types:
+      - published
+
+jobs:
+  docker_build:
+    name: Build Docker Image and push to Docker Registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.DOCKER_REGISTRY || 'docker.io' }}
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ format('{0}/aem-dispatcher-scanner:latest', vars.DOCKER_USERNAME) }}
