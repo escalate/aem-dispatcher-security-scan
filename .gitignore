@@ -47,3 +47,7 @@ ENV/
 # IDE
 .idea/
 .vscode/
+
+
+# Virtualenv
+.venv/
