@@ -40,14 +40,12 @@ coverage.xml
 # dotenv
 .env
 
-# virtualenv
+# Virtualenv
+
 venv/
 ENV/
+.venv/
 
 # IDE
 .idea/
 .vscode/
-
-
-# Virtualenv
-.venv/
