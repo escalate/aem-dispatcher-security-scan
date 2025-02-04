@@ -4,7 +4,7 @@ import json
 import pathlib
 import threading
 
-from security_scan_status import SecurityScanStatus 
+from security_scan_status import SecurityScanStatus
 
 VALID_FILE_EXTENSIONS = ['.txt', '.json']
 
@@ -41,7 +41,7 @@ class SecurityScanner():
     def load_paths(self, resource_path):
         '''
         Loads path list from resource. Supported file extensions are .txt and .json.
-            
+
                 Parameters:
                     resource_path (str): Path to the resource containing test patterns (can be local or remote)
 
@@ -51,7 +51,7 @@ class SecurityScanner():
         if resource_path is None or resource_path == '':
             logging.error('Resource path is not set')
             return []
-        
+
         extension = pathlib.Path(resource_path).suffix
         if extension not in VALID_FILE_EXTENSIONS:
             logging.error('Invalid file extension "{extension}". Valid file extensions are {valid_extensions}.'.format(
@@ -70,16 +70,16 @@ class SecurityScanner():
         else:
             with open(resource_path, 'r') as file:
                 paths = json.load(file) if resource_path.endswith('.json') else file.readlines()
-        
+
         for i in range(len(paths)):
             paths[i] = paths[i].strip()
         return self.update_path_placeholders(paths)
-        
+
 
     def update_path_placeholders(self, paths):
         '''
         Replaces placeholder '/content/add_valid_path_to_a_page' with valid website page path
-            
+
                 Parameters:
                     paths (list): List of paths to be updated
 
@@ -96,38 +96,38 @@ class SecurityScanner():
     def retrieve_path_response(self, path, headers = {}):
         '''
         Retrieve a response from the provided path
-            
+
                 Parameters:
                     path (str): Path to retrieve response from
                     headers (dict): Headers to be added to the request
-                
+
                 Returns:
                     SecurityScanStatus: Status of the security scan
-                    
+
         '''
         url = '{host}{path}'.format(
             host=self.host,
             path=path
         )
-        
+
         try:
             r = requests.get(
                 url,
                 headers=headers,
                 timeout=self.request_timeout)
-            
+
             return SecurityScanStatus(self.host, path, r)
         except requests.exceptions.RequestException as e:
             logging.error('{error} for {url}'.format(error=e, url=url))
         return None
-    
+
     def retrieve_dispatcher_invalidate_cache_response(self):
         '''
         Retrieve a response distpacher invalidate cache endpoint
 
                 Returns:
                     SecurityScanStatus: Status of the security
-                    
+    
         '''
         headers = {
             'CQ-Handle': '/content',
@@ -139,7 +139,7 @@ class SecurityScanner():
     def validate_all_paths(self):
         '''
         Performs vulnerability test for all paths provided to the scanner
-            
+
                     Returns:
                         list: List of results for each path provided to the scanner
         '''
@@ -169,6 +169,6 @@ class SecurityScanner():
             t = threading.Thread(target=self.retrieve_path_response_async, args=(path, lock,))
             threads.append(t)
             t.start()
-        
+
         for t in threads:
             t.join()
