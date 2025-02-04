@@ -43,7 +43,7 @@ def cli(*args, **kwargs):
 
     # Instantiate Scan
     scanner = SecurityScanner(host=host, page_path=page_path, request_timeout=timeout)
-    
+
     # Run security scan
     click.echo('Start active security scan of URL {website}\n'.format(
         website=scanner.host))
@@ -66,6 +66,6 @@ def cli(*args, **kwargs):
             total=total_scans,
             vulnerable_results='\n'.join([str(r) for r in vulnerable_results])))
         exit(1)
-        
+
 if __name__ == '__main__':
     cli()

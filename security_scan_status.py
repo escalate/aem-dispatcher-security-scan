@@ -24,7 +24,7 @@ class SecurityScanStatus():
                 path (str): Path of the website in CRX
                 response (requests.models.Response): Response
         '''
-        
+
         self.time = datetime.datetime.now()
         self.host = host
         self.path = path
