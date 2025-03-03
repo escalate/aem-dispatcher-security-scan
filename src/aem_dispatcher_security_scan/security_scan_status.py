@@ -1,5 +1,7 @@
-import requests
 import datetime
+
+import requests
+
 
 class SecurityScanStatus():
     '''
