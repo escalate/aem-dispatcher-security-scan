@@ -1,9 +1,10 @@
+import unittest
+
 import requests
 import responses
 
-import unittest
+from aem_dispatcher_security_scan.security_scanner import SecurityScanner
 
-from security_scanner import SecurityScanner
 
 class TestSecurityScanner(unittest.TestCase):
     def test_host_default(self):
@@ -124,7 +125,7 @@ class TestSecurityScanner(unittest.TestCase):
         '''
         scanner = SecurityScanner()
 
-        self.assertRaises(FileNotFoundError, scanner.load_paths, resource_path='tests/paths-from-file-not-exist.txt')
+        self.assertRaises(FileNotFoundError, scanner.load_paths, resource_path='tests/fixtures/paths-from-file-not-exist.txt')
 
     def test_load_paths_file_invalid_extension(self):
         '''
@@ -133,7 +134,7 @@ class TestSecurityScanner(unittest.TestCase):
         THEN paths are not loaded from the file
         '''
         scanner = SecurityScanner()
-        paths = scanner.load_paths(resource_path='tests/paths-from-file.csv')
+        paths = scanner.load_paths(resource_path='tests/fixtures/paths-from-file.csv')
 
         self.assertEqual(len(paths), 0)
 
@@ -144,7 +145,7 @@ class TestSecurityScanner(unittest.TestCase):
         THEN paths are loaded from the file
         '''
         scanner = SecurityScanner()
-        paths = scanner.load_paths(resource_path='tests/paths-from-file.txt')
+        paths = scanner.load_paths(resource_path='tests/fixtures/paths-from-file.txt')
 
         self.assertEqual(len(paths), 3)
         self.assertEqual(paths[0], '/bin/path-from-text-file-1.json')
@@ -158,7 +159,7 @@ class TestSecurityScanner(unittest.TestCase):
         THEN paths are loaded from the file
         '''
         scanner = SecurityScanner()
-        paths = scanner.load_paths(resource_path='tests/paths-from-file.json')
+        paths = scanner.load_paths(resource_path='tests/fixtures/paths-from-file.json')
 
         self.assertEqual(len(paths), 3)
         self.assertEqual(paths[0], '/bin/path-from-json-file-1.json')
@@ -263,7 +264,7 @@ class TestSecurityScanner(unittest.TestCase):
                     body='This is mocked response text.',
                     status=200)
 
-        scanner = SecurityScanner(host='http://localhost:8090', resource_path='tests/paths-from-file.txt')
+        scanner = SecurityScanner(host='http://localhost:8090', resource_path='tests/fixtures/paths-from-file.txt')
 
         status = scanner.retrieve_path_response('/path.json')
 
@@ -284,7 +285,7 @@ class TestSecurityScanner(unittest.TestCase):
         responses.add(responses.GET, 'http://localhost:8090/dispatcher/invalidate.cache',
                     status=200)
 
-        scanner = SecurityScanner(host='http://localhost:8090', resource_path='tests/paths-from-file.txt')
+        scanner = SecurityScanner(host='http://localhost:8090', resource_path='tests/fixtures/paths-from-file.txt')
 
         status = scanner.retrieve_path_response('/dispatcher/invalidate.cache')
 

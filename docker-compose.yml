@@ -1,0 +1,6 @@
+services:
+  aem-dispatcher-security-scan:
+    container_name: aem-dispatcher-security-scan
+    image: aem-dispatcher-security-scan:${DOCKER_IMAGE_TAG:-latest}
+    build:
+      context: .

@@ -1,8 +1,10 @@
-import requests
 import unittest
 from unittest.mock import Mock
 
-from security_scan_status import SecurityScanStatus
+import requests
+
+from aem_dispatcher_security_scan.security_scan_status import SecurityScanStatus
+
 
 class TestSecurityScanStatus(unittest.TestCase):
 

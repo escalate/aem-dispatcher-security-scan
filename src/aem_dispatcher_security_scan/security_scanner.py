@@ -1,4 +1,4 @@
-import logging
+from loguru import logger
 import requests
 import json
 import pathlib
@@ -31,11 +31,11 @@ class SecurityScanner():
 
     def print_configuration(self):
         """Prints configuration of SecurityScanner"""
-        logging.debug('Host is set to "{host}"'.format(
+        logger.debug('Host is set to "{host}"'.format(
             host=self.host))
-        logging.debug('Page path is set to "{page_path}"'.format(
+        logger.debug('Page path is set to "{page_path}"'.format(
             page_path=self.page_path))
-        logging.debug('Request timeout is set to "{request_timeout}"'.format(
+        logger.debug('Request timeout is set to "{request_timeout}"'.format(
             request_timeout=self.request_timeout))
 
     def load_paths(self, resource_path):
@@ -49,12 +49,12 @@ class SecurityScanner():
                     list: List of paths
         '''
         if resource_path is None or resource_path == '':
-            logging.error('Resource path is not set')
+            logger.error('Resource path is not set')
             return []
 
         extension = pathlib.Path(resource_path).suffix
         if extension not in VALID_FILE_EXTENSIONS:
-            logging.error('Invalid file extension "{extension}". Valid file extensions are {valid_extensions}.'.format(
+            logger.error('Invalid file extension "{extension}". Valid file extensions are {valid_extensions}.'.format(
                 extension=extension, valid_extensions=VALID_FILE_EXTENSIONS))
             return []
 
@@ -64,7 +64,7 @@ class SecurityScanner():
             if r.status_code == requests.codes.ok:
                 paths = r.json() if resource_path.endswith('.json') else r.text.splitlines()
             else:
-                logging.error('Failed to load resource from {resource_path}'.format(
+                logger.error('Failed to load resource from {resource_path}'.format(
                     resource_path=resource_path))
                 paths = []
         else:
@@ -118,7 +118,7 @@ class SecurityScanner():
 
             return SecurityScanStatus(self.host, path, r)
         except requests.exceptions.RequestException as e:
-            logging.error('{error} for {url}'.format(error=e, url=url))
+            logger.error('{error} for {url}'.format(error=e, url=url))
         return None
 
     def retrieve_dispatcher_invalidate_cache_response(self):

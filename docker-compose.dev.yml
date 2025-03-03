@@ -1,0 +1,12 @@
+services:
+  aem-dispatcher-security-scan-dev:
+    container_name: aem-dispatcher-security-scan-dev
+    build:
+      context: .
+      target: base
+    working_dir: /app
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - type: bind
+        source: ./
+        target: /app

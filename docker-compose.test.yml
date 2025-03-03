@@ -1,0 +1,6 @@
+services:
+  aem-dispatcher-security-scan-test:
+    container_name: aem-dispatcher-security-scan-test
+    build:
+      context: .
+      target: test
