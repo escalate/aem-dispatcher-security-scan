@@ -68,19 +68,19 @@ $ docker run scan \
 
 ## Dependencies
 
--   [click](https://pypi.python.org/pypi/click)
--   [requests](https://pypi.python.org/pypi/requests)
+- [click](https://pypi.python.org/pypi/click)
+- [requests](https://pypi.python.org/pypi/requests)
 
 ## References
 
--   [docs.adobe.com](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html#testing-dispatcher-security)
--   [0ang3el/aem-hacker](https://github.com/0ang3el/aem-hacker)
--   [emadshanab/Adobe-Experience-Manager](https://github.com/emadshanab/Adobe-Experience-Manager)
--   [danielmiessler/seclists](https://github.com/danielmiessler/SecLists)
--   [aem-design/ansible-role-aem-security-test](https://github.com/aem-design/ansible-role-aem-security-test)
--   [cognifide/securecq](https://github.com/Cognifide/SecureCQ)
--   [perficientdigital.com](https://blogs.perficientdigital.com/2019/01/10/mastering-aem-dispatcher-part-7-securing-the-dispatcher/)
--   [infosecinstitute.com](https://resources.infosecinstitute.com/adobe-cq-pentesting-guide-part-1/)
+- [docs.adobe.com](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html#testing-dispatcher-security)
+- [0ang3el/aem-hacker](https://github.com/0ang3el/aem-hacker)
+- [emadshanab/Adobe-Experience-Manager](https://github.com/emadshanab/Adobe-Experience-Manager)
+- [danielmiessler/seclists](https://github.com/danielmiessler/SecLists)
+- [aem-design/ansible-role-aem-security-test](https://github.com/aem-design/ansible-role-aem-security-test)
+- [cognifide/securecq](https://github.com/Cognifide/SecureCQ)
+- [perficientdigital.com](https://blogs.perficientdigital.com/2019/01/10/mastering-aem-dispatcher-part-7-securing-the-dispatcher/)
+- [infosecinstitute.com](https://resources.infosecinstitute.com/adobe-cq-pentesting-guide-part-1/)
 
 ## License
 
