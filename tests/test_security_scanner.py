@@ -224,7 +224,7 @@ class TestSecurityScanner(unittest.TestCase):
         THEN paths are updated
         '''
         scanner = SecurityScanner()
- 
+
         paths = [
             '/content/add_valid_path_to_a_page/path-1.txt',
             '/content/add_valid_path_to_a_page/path-2.txt',

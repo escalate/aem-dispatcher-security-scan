@@ -127,7 +127,6 @@ class SecurityScanner():
 
                 Returns:
                     SecurityScanStatus: Status of the security
-    
         '''
         headers = {
             'CQ-Handle': '/content',
