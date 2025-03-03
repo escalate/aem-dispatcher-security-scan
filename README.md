@@ -31,12 +31,6 @@ Tested with Python 3.12.x on Ubuntu 22.04
 
 If you encounter issues with 3.12.x patch versions of Python, please open a Github issue.
 
-### Install needed requirements
-
-```
-make requirements
-```
-
 ### Run tool from commandline
 
 ```
