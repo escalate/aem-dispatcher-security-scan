@@ -1,9 +1,9 @@
-from loguru import logger
-import requests
 import json
 import pathlib
 import threading
 
+import requests
+from loguru import logger
 from security_scan_status import SecurityScanStatus
 
 VALID_FILE_EXTENSIONS = ['.txt', '.json']
