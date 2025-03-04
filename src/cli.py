@@ -61,9 +61,7 @@ def cli(
     if total_vulnerable == 0:
         logger.info(
             "Summary: No security relevant AEM Dispatcher URLs found"
-            " in {total} rules.".format(
-                total=total_scans
-            )
+            " in {total} rules.".format(total=total_scans)
         )
         click.exit(0)
     else:

@@ -58,7 +58,7 @@ class SecurityScanner:
         if extension not in VALID_FILE_EXTENSIONS:
             logger.error(
                 'Invalid file extension "{extension}". '
-                'Valid file extensions are {valid_extensions}.'.format(
+                "Valid file extensions are {valid_extensions}.".format(
                     extension=extension, valid_extensions=VALID_FILE_EXTENSIONS
                 )
             )
