@@ -10,8 +10,14 @@ If you know some more URLs, please open a Github issue to report them.
 
 ## Usage
 
+Build Docker image
 ```
-$ ./src/cli.py --help
+$ make build-docker-image
+```
+
+Run Docker container from built image to print help
+```
+$ make run-docker-image
 
 Usage: cli.py [OPTIONS]
 
@@ -25,40 +31,21 @@ Options:
   --help             Show this message and exit.
 ```
 
-## Installation
-
-Tested with Python 3.12.x on Ubuntu 22.04
-
-If you encounter issues with 3.12.x patch versions of Python, please open a Github issue.
-
-### Run tool from commandline
-
+Run Docker container from built image with custom arguments
 ```
-$ ./scan.py
-```
-
-## Docker
-
-### Build Docker image
-
-```
-$ make build-docker-image
-```
-
-### Run Docker container from built image
-
-```
-$ docker run aem-dispatcher-security-scan
-```
-
-### Run Docker container from built image with arguments
-
-```
-$ docker run docker run aem-dispatcher-security-scan \
+$ docker compose \
+    --file docker-compose.yml \
+    run \
+    --rm \
+    aem-dispatcher-security-scan \
     --host "https://www.adobe.com"
     --page-path "/content/geometrixx/en"
     --verbose
 ```
+
+## Development
+
+Build and launch the [DevContainer](https://code.visualstudio.com/docs/devcontainers/containers) in [VSCode](https://code.visualstudio.com/).
 
 ## References
 
