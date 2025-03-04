@@ -13,17 +13,6 @@ If you know some more URLs, please open a Github issue to report them.
 ```
 $ ./src/cli.py --help
 
-Usage: scan.py [OPTIONS]
-
-    Commandline interface for AEM Dispatcher Security Scan
-
-Options:
-    --host TEXT               Set host of website e.g. http://www.adobe.com [required]
-    --page-path TEXT          Set path of website page e.g. /content/geometrixx/en
-    --timeout INT             Set timeout for http requests in secs e.g. 5 or 10
-    --verbose                 Enable verbose logging output
-    --help                    Show this message and exit.
-
 Usage: cli.py [OPTIONS]
 
   Commandline interface for AEM Dispatcher Security Scan
