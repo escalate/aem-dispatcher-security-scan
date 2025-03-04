@@ -17,26 +17,20 @@ class SecurityScanner:
 
     def __init__(
         self,
-        host="http://localhost:8080",
-        page_path="/content/geometrixx/en",
-        request_timeout=10,
-        resource_path="aem-sec-paths.txt",
+        host: str = "http://localhost:8080",
+        page_path: str = "/content/geometrixx/en",
+        request_timeout: int = 10,
+        resource_path: str = "aem-sec-paths.txt",
     ):
-        """
-        Constructor
-
-            Parameters:
-                host (str): Host of the website. Default is http://localhost:8080.
-                page_path (str): Path of the website in CRX. Default is /content/geometrixx/en.
-                request_timeout (int): Timeout for http requests in seconds. Default is 1.
-                resource_path (str): Path to the resource containing test patterns. Default is aem-sec-paths.txt.
-        """
-        self.host = "http://localhost:8080" if host is None else host
-        self.page_path = "/content/geometrixx/en" if page_path is None else page_path
-        self.request_timeout = 10 if request_timeout is None else request_timeout
-        self.paths = self.load_paths(
-            "aem-sec-paths.txt" if resource_path is None else resource_path
-        )
+        """Constructor"""
+        # Host of the website.
+        self.host = host
+        # Path of the website in CRX.
+        self.page_path = page_path
+        # Timeout for http requests in seconds.
+        self.request_timeout = request_timeout
+        # Path to the resource containing test patterns.
+        self.paths = self.load_paths(resource_path)
 
     def print_configuration(self):
         """Prints configuration of SecurityScanner"""
@@ -50,15 +44,11 @@ class SecurityScanner:
             )
         )
 
-    def load_paths(self, resource_path):
-        """
-        Loads path list from resource. Supported file extensions are .txt and .json.
+    def load_paths(self, resource_path: str):
+        """Loads path list from resource. Supported file extensions are .txt and .json.
 
-                Parameters:
-                    resource_path (str): Path to the resource containing test patterns (can be local or remote)
-
-                Returns:
-                    list: List of paths
+        Returns:
+            list: List of paths
         """
         if resource_path is None or resource_path == "":
             logger.error("Resource path is not set")
@@ -67,7 +57,8 @@ class SecurityScanner:
         extension = pathlib.Path(resource_path).suffix
         if extension not in VALID_FILE_EXTENSIONS:
             logger.error(
-                'Invalid file extension "{extension}". Valid file extensions are {valid_extensions}.'.format(
+                'Invalid file extension "{extension}". '
+                'Valid file extensions are {valid_extensions}.'.format(
                     extension=extension, valid_extensions=VALID_FILE_EXTENSIONS
                 )
             )
@@ -99,15 +90,12 @@ class SecurityScanner:
             paths[i] = paths[i].strip()
         return self.update_path_placeholders(paths)
 
-    def update_path_placeholders(self, paths):
-        """
-        Replaces placeholder '/content/add_valid_path_to_a_page' with valid website page path
+    def update_path_placeholders(self, paths: list):
+        """Replaces placeholder '/content/add_valid_path_to_a_page'
+        with valid website page path
 
-                Parameters:
-                    paths (list): List of paths to be updated
-
-                Returns:
-                    list: List of updated paths
+        Returns:
+            list: List of updated paths
         """
         updated_paths = []
         for path in paths:
@@ -116,17 +104,11 @@ class SecurityScanner:
                 updated_paths.append(p)
         return updated_paths
 
-    def retrieve_path_response(self, path, headers={}):
-        """
-        Retrieve a response from the provided path
+    def retrieve_path_response(self, path: str, headers: dict = {}):
+        """Retrieve a response from the provided path
 
-                Parameters:
-                    path (str): Path to retrieve response from
-                    headers (dict): Headers to be added to the request
-
-                Returns:
-                    SecurityScanStatus: Status of the security scan
-
+        Returns:
+            SecurityScanStatus: Status of the security scan
         """
         url = "{host}{path}".format(host=self.host, path=path)
 
@@ -139,11 +121,10 @@ class SecurityScanner:
         return None
 
     def retrieve_dispatcher_invalidate_cache_response(self):
-        """
-        Retrieve a response distpacher invalidate cache endpoint
+        """Retrieve a response distpacher invalidate cache endpoint
 
-                Returns:
-                    SecurityScanStatus: Status of the security
+        Returns:
+            SecurityScanStatus: Status of the security
         """
         headers = {"CQ-Handle": "/content", "CQ-Path": "/content"}
 
@@ -152,11 +133,10 @@ class SecurityScanner:
         )
 
     def validate_all_paths(self):
-        """
-        Performs vulnerability test for all paths provided to the scanner
+        """Performs vulnerability test for all paths provided to the scanner
 
-                    Returns:
-                        list: List of results for each path provided to the scanner
+        Returns:
+            list: List of results for each path provided to the scanner
         """
         results = []
         count = 0
