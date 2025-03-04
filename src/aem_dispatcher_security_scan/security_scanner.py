@@ -4,7 +4,8 @@ import threading
 
 import requests
 from loguru import logger
-from security_scan_status import SecurityScanStatus
+
+from .security_scan_status import SecurityScanStatus
 
 VALID_FILE_EXTENSIONS = [".txt", ".json"]
 
