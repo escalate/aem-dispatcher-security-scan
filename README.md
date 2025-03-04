@@ -42,28 +42,23 @@ $ ./scan.py
 ### Build Docker image
 
 ```
-$ make build
+$ make build-docker-image
 ```
 
 ### Run Docker container from built image
 
 ```
-$ docker run scan
+$ docker run aem-dispatcher-security-scan
 ```
 
 ### Run Docker container from built image with arguments
 
 ```
-$ docker run scan \
-    --website-url "http://www.adobe.com"
-    --website-page-path "/content/geometrixx/en"
+$ docker run docker run aem-dispatcher-security-scan \
+    --host "https://www.adobe.com"
+    --page-path "/content/geometrixx/en"
     --verbose
 ```
-
-## Dependencies
-
-- [click](https://pypi.python.org/pypi/click)
-- [requests](https://pypi.python.org/pypi/requests)
 
 ## References
 
