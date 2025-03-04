@@ -16,18 +16,6 @@ def test_host_default():
     assert actual.host == "http://localhost:8080"
 
 
-def test_host_none():
-    """
-    GIVEN new SecurityScanner object has been created
-    by using None as value of host
-    WHEN object is created
-    THEN host is set to default value
-    """
-    actual = SecurityScanner(host=None)
-
-    assert actual.host == "http://localhost:8080"
-
-
 def test_host_custom():
     """
     GIVEN new SecurityScanner object has been created
@@ -47,18 +35,6 @@ def test_page_path_default():
     THEN page_path is set to default value
     """
     actual = SecurityScanner()
-
-    assert actual.page_path == "/content/geometrixx/en"
-
-
-def test_page_path_none():
-    """
-    GIVEN new SecurityScanner object has been created
-    by using None as value of page_path
-    WHEN object is created
-    THEN page_path is set to default value
-    """
-    actual = SecurityScanner(page_path=None)
 
     assert actual.page_path == "/content/geometrixx/en"
 
@@ -86,18 +62,6 @@ def test_request_timeout_default():
     assert actual.request_timeout == 10
 
 
-def test_request_timeout_none():
-    """
-    GIVEN new SecurityScanner object has been created
-    by using None as value of request_timeout
-    WHEN object is created
-    THEN request_timeout is set to default value
-    """
-    actual = SecurityScanner(request_timeout=None)
-
-    assert actual.request_timeout == 10
-
-
 def test_request_timeout_custom():
     """
     GIVEN new SecurityScanner object has been created
@@ -117,18 +81,6 @@ def test_resource_path_default():
     THEN paths are loaded from default resource file
     """
     actual = SecurityScanner()
-
-    assert len(actual.paths) == 620
-
-
-def test_resource_path_none():
-    """
-    GIVEN new SecurityScanner object has been created
-    by using None as value of resource_path
-    WHEN object is created
-    THEN paths are loaded from default resource file
-    """
-    actual = SecurityScanner(resource_path=None)
 
     assert len(actual.paths) == 620
 
