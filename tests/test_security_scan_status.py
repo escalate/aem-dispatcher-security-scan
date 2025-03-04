@@ -135,5 +135,5 @@ def test_str():
     assert re.match(
         r"\[\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3,}\] \d{3} \-"
         r" http://localhost:80/content/some-page/en",
-        actual,
+        str(actual),
     )
