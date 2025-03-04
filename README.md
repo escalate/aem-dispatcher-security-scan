@@ -11,7 +11,7 @@ If you know some more URLs, please open a Github issue to report them.
 ## Usage
 
 ```
-$ ./scan.py --help
+$ ./src/cli.py --help
 
 Usage: scan.py [OPTIONS]
 
@@ -23,6 +23,17 @@ Options:
     --timeout INT             Set timeout for http requests in secs e.g. 5 or 10
     --verbose                 Enable verbose logging output
     --help                    Show this message and exit.
+
+Usage: cli.py [OPTIONS]
+
+  Commandline interface for AEM Dispatcher Security Scan
+
+Options:
+  --host TEXT        Set host of website. Leave empty to use default value: http://localhost:8080.  [required]
+  --page-path TEXT   Set path of website. Leave empty to use default value: /content/geometrixx/en.
+  --timeout INTEGER  Set timeout for http requests in seconds. Leave emtpy to use default value: 10.
+  --verbose          Enable verbose logging output.
+  --help             Show this message and exit.
 ```
 
 ## Installation
