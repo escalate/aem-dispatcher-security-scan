@@ -11,11 +11,13 @@ If you know some more URLs, please open a Github issue to report them.
 ## Usage
 
 Build Docker image
+
 ```
 $ make build-docker-image
 ```
 
 Run Docker container from built image to print help
+
 ```
 $ make run-docker-image
 
@@ -32,6 +34,7 @@ Options:
 ```
 
 Run Docker container from built image with custom arguments
+
 ```
 $ docker compose \
     --file docker-compose.yml \
