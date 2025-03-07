@@ -69,7 +69,8 @@ def cli(
     else:
         logger.error(
             (
-                "Summary: Found {hit} of {total} security relevant AEM Dispatcher URLs.\n\n"
+                "Summary: Found {hit} of {total} security relevant "
+                "AEM Dispatcher URLs.\n\n"
                 "Vulnerable results are: \n{vulnerable_results}"
             ).format(
                 hit=total_vulnerable,
