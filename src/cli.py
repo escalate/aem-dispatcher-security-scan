@@ -60,14 +60,18 @@ def cli(
     # Display results
     if total_vulnerable == 0:
         logger.info(
-            "Summary: No security relevant AEM Dispatcher URLs found"
-            " in {total} rules.".format(total=total_scans)
+            (
+                "Summary: No security relevant "
+                "AEM Dispatcher URLs found in {total} rules."
+            ).format(total=total_scans)
         )
         click.exit(0)
     else:
         logger.error(
-            "Summary: Found {hit} of {total} security relevant AEM Dispatcher URLs."
-            "\n\nVulnerable results are: \n{vulnerable_results}".format(
+            (
+                "Summary: Found {hit} of {total} security relevant AEM Dispatcher URLs.\n\n"
+                "Vulnerable results are: \n{vulnerable_results}"
+            ).format(
                 hit=total_vulnerable,
                 total=total_scans,
                 vulnerable_results="\n".join([str(r) for r in vulnerable_results]),
