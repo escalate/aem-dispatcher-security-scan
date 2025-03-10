@@ -3,7 +3,6 @@ import pathlib
 import threading
 
 import requests
-from loguru import logger
 
 from .security_scan_status import SecurityScanStatus
 
@@ -35,11 +34,9 @@ class SecurityScanner:
 
     def print_configuration(self):
         """Prints configuration of SecurityScanner"""
-        logger.debug('Host is set to "{host}"'.format(host=self.host))
-        logger.debug(
-            'Page path is set to "{page_path}"'.format(page_path=self.page_path)
-        )
-        logger.debug(
+        print('Host is set to "{host}"'.format(host=self.host))
+        print('Page path is set to "{page_path}"'.format(page_path=self.page_path))
+        print(
             'Request timeout is set to "{request_timeout}"'.format(
                 request_timeout=self.request_timeout
             )
@@ -52,12 +49,12 @@ class SecurityScanner:
             list: List of paths
         """
         if resource_path is None or resource_path == "":
-            logger.error("Resource path is not set")
+            print("Resource path is not set")
             return []
 
         extension = pathlib.Path(resource_path).suffix
         if extension not in VALID_FILE_EXTENSIONS:
-            logger.error(
+            print(
                 (
                     'Invalid file extension "{extension}". '
                     "Valid file extensions are {valid_extensions}."
@@ -73,7 +70,7 @@ class SecurityScanner:
                     r.json() if resource_path.endswith(".json") else r.text.splitlines()
                 )
             else:
-                logger.error(
+                print(
                     "Failed to load resource from {resource_path}".format(
                         resource_path=resource_path
                     )
@@ -118,7 +115,7 @@ class SecurityScanner:
 
             return SecurityScanStatus(self.host, path, r)
         except requests.exceptions.RequestException as e:
-            logger.error("{error} for {url}".format(error=e, url=url))
+            print("{error} for {url}".format(error=e, url=url))
         return None
 
     def retrieve_dispatcher_invalidate_cache_response(self):
