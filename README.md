@@ -29,7 +29,6 @@ Options:
   --host TEXT        Set host of website. Leave empty to use default value: http://localhost:8080.  [required]
   --page-path TEXT   Set path of website. Leave empty to use default value: /content/geometrixx/en.
   --timeout INTEGER  Set timeout for http requests in seconds. Leave emtpy to use default value: 10.
-  --verbose          Enable verbose logging output.
   --help             Show this message and exit.
 ```
 
@@ -43,7 +42,6 @@ $ docker compose \
     aem-dispatcher-security-scan \
     --host "https://www.adobe.com"
     --page-path "/content/geometrixx/en"
-    --verbose
 ```
 
 ## Development
