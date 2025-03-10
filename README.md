@@ -40,7 +40,7 @@ $ docker compose \
     run \
     --rm \
     aem-dispatcher-security-scan \
-    --host "https://www.adobe.com"
+    --host "https://www.adobe.com" \
     --page-path "/content/geometrixx/en"
 ```
 
