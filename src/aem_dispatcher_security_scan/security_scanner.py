@@ -183,3 +183,5 @@ class SecurityScanner:
 
         for t in threads:
             t.join()
+
+        results.append(self.retrieve_dispatcher_invalidate_cache_response())
