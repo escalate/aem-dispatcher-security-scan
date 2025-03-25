@@ -4,7 +4,7 @@ import threading
 
 import requests
 
-from .security_scan_status import SecurityScanStatus
+from .scan_result import ScanResult
 
 VALID_FILE_EXTENSIONS = [".txt", ".json"]
 
@@ -106,23 +106,23 @@ class SecurityScanner:
         """Retrieve a response from the provided path
 
         Returns:
-            SecurityScanStatus: Status of the security scan
+            ScanResult: Result of the security scan
         """
         url = "{host}{path}".format(host=self.host, path=path)
 
         try:
             r = requests.get(url, headers=headers, timeout=self.request_timeout)
 
-            return SecurityScanStatus(self.host, path, r)
+            return ScanResult(self.host, path, r)
         except requests.exceptions.RequestException as e:
             print("{error} for {url}".format(error=e, url=url))
-        return None
+        return ScanResult(self.host, path, None)
 
     def retrieve_dispatcher_invalidate_cache_response(self):
         """Retrieve a response distpacher invalidate cache endpoint
 
         Returns:
-            SecurityScanStatus: Status of the security
+            ScanResult: Result of the security
         """
         headers = {"CQ-Handle": "/content", "CQ-Path": "/content"}
 

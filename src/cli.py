@@ -2,6 +2,7 @@
 
 import click
 
+from aem_dispatcher_security_scan.scan_status import ScanStatus
 from aem_dispatcher_security_scan.security_scanner import SecurityScanner
 
 
@@ -48,8 +49,10 @@ def cli(
     results = scanner.results
     total_scans = len(results)
 
-    vulnerable_results = [r for r in results if r.is_vulnerable is True]
+    vulnerable_results = [r for r in results if r.scan_status is ScanStatus.VULNERABLE]
     total_vulnerable = len(vulnerable_results)
+
+    failed_results = [r for r in results if r.scan_status is ScanStatus.FAILED]
 
     # Display results
     if total_vulnerable == 0:
@@ -72,6 +75,15 @@ def cli(
                 vulnerable_results="\n".join([str(r) for r in vulnerable_results]),
             )
         )
+        if len(failed_results) > 0:
+            print(
+                (
+                    "\nSome requests failed. Please check the following URLs or re-run scan:"
+                    "\n{failed_results}"
+                ).format(
+                    failed_results="\n".join([str(r) for r in failed_results])
+                )
+            )
         exit(1)
 
 
