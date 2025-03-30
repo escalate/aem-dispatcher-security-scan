@@ -21,19 +21,22 @@ class ScanResult:
         self.response = response
         # Status code of the response
         self.status_code = -1 if response is None else response.status_code
-        #  True if a vulnerability was found, False otherwise
+        #  ScanStatus enum to identify if vulnerability was found
         self.scan_status = self.retrive_scan_status(response)
 
     def retrive_scan_status(self, response: requests.models.Response):
         """Check if a vulnerability was found in the response
 
         Returns:
-            bool: True if a vulnerability was found, False otherwise
+            ScanStatus
         """
         if response is None:
             return ScanStatus.FAILED
         else:
-            return ScanStatus.SAFE if response.status_code == requests.codes.not_found else ScanStatus.VULNERABLE
+            if response.status_code == requests.codes.not_found:
+                return ScanStatus.SAFE
+            else:
+                return ScanStatus.VULNERABLE
 
     def __str__(self):
         """Return string representation of the object

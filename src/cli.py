@@ -78,7 +78,7 @@ def cli(
         if len(failed_results) > 0:
             print(
                 (
-                    "\nSome requests failed. Please check the following URLs or re-run scan:"
+                    "\nPlease check the following URLs manually or re-run scan:"
                     "\n{failed_results}"
                 ).format(
                     failed_results="\n".join([str(r) for r in failed_results])

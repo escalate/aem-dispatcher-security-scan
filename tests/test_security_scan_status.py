@@ -6,6 +6,7 @@ import requests
 from aem_dispatcher_security_scan.scan_status import ScanStatus
 from aem_dispatcher_security_scan.scan_result import ScanResult
 
+
 def test_host():
     """
     GIVEN new ScanResult object has been created
