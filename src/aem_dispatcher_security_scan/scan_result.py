@@ -4,6 +4,7 @@ import requests
 
 from .scan_status import ScanStatus
 
+
 class ScanResult:
     """Class to store the status of a security scan"""
 
