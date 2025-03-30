@@ -80,9 +80,7 @@ def cli(
                 (
                     "\nPlease check the following URLs manually or re-run scan:"
                     "\n{failed_results}"
-                ).format(
-                    failed_results="\n".join([str(r) for r in failed_results])
-                )
+                ).format(failed_results="\n".join([str(r) for r in failed_results]))
             )
         exit(1)
 

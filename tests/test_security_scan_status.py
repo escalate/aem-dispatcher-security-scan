@@ -127,9 +127,7 @@ def test_str():
     response = Mock(spec=requests.models.Response)
     response.status_code = 200
 
-    actual = ScanResult(
-        "http://localhost:80", "/content/some-page/en", response
-    )
+    actual = ScanResult("http://localhost:80", "/content/some-page/en", response)
 
     assert re.match(
         r"\[\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3,}\] \d{3} \-"
