@@ -40,6 +40,7 @@ ENV PYTHONFAULTHANDLER=1 \
 
 COPY --from=build --chown=python-user:python-user /build/src/ /app/
 COPY --from=build --chown=python-user:python-user /build/.venv/ /app/.venv/
+COPY --from=build --chown=python-user:python-user /build/aem-sec-paths.txt /app/aem-sec-paths.txt
 
 WORKDIR /app
 USER python-user
