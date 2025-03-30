@@ -3,8 +3,8 @@ from unittest.mock import Mock
 
 import requests
 
-from aem_dispatcher_security_scan.scan_status import ScanStatus
 from aem_dispatcher_security_scan.scan_result import ScanResult
+from aem_dispatcher_security_scan.scan_status import ScanStatus
 
 
 def test_host():
