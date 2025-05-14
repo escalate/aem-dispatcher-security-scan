@@ -1,3 +1,0 @@
-/bin/path-from-text-file-1.json
-/bin/path-from-text-file-2.json
-/bin/path-from-text-file-3.json

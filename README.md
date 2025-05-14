@@ -2,11 +2,11 @@
 
 # AEM Dispatcher Security Scan
 
-A commandline tool to perfom an active security scan against a [AEM Dispatcher](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/dispatcher.html).
+A commandline tool to perform an security scan against a [AEM Dispatcher](https://docs.adobe.com/content/help/en/experience-manager-dispatcher/using/dispatcher.html).
 
 This tool tries to unify all known security relevant AEM Dispatcher URLs from the internet.
 
-If you know some more URLs, please open a Github issue to report them.
+If you know some more URLs, please open a [GitHub issue](https://github.com/escalate/aem-dispatcher-security-scan/issues/new) to report them.
 
 ## Usage
 
@@ -23,12 +23,13 @@ $ make run-docker-image
 
 Usage: cli.py [OPTIONS]
 
-  Commandline interface for AEM Dispatcher Security Scan
+  AEM Dispatcher Security Scan
 
 Options:
-  --host TEXT        Set host of website. Leave empty to use default value: http://localhost:8080.  [required]
-  --page-path TEXT   Set path of website. Leave empty to use default value: /content/geometrixx/en.
-  --timeout INTEGER  Set timeout for http requests in seconds. Leave emtpy to use default value: 10.
+  --url TEXT         URL of website e.g. https://www.example.com  [required]
+  --page-path TEXT   Page path of website. e.g. /content/geometrixx/en (Default: /)
+  --timeout INTEGER  Timeout for HTTP requests in seconds. (Default: 10)
+  --file PATH        Text file with test paths. (Default: aem-sec-paths.txt)
   --help             Show this message and exit.
 ```
 
@@ -40,7 +41,7 @@ $ docker compose \
     run \
     --rm \
     aem-dispatcher-security-scan \
-    --host "https://www.adobe.com" \
+    --host "https://www.example.com" \
     --page-path "/content/geometrixx/en"
 ```
 

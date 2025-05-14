@@ -1,0 +1,3 @@
+/content.json
+/content/add_valid_path_to_a_page.html
+/welcome
