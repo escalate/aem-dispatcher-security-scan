@@ -153,10 +153,6 @@
 /content.1.xml
 /content.4.2.1...json
 /content/.4.2.1...json
-/content/add_valid_page.html?debug=layout
-/content/add_valid_page.qu%65ry.js%6Fn?statement=//*
-/content/add_valid_page.query.json?statement=//*
-/content/add_valid_page.query.json?statement=//* #/(@transportPassword%20|%20@transportUri%20|%20@transportUser)
 /content/add_valid_path_to_a_page.childrenlist.json
 /content/add_valid_path_to_a_page.docview.json
 /content/add_valid_path_to_a_page.docview.xml
@@ -174,6 +170,7 @@
 /content/add_valid_path_to_a_page/pagename.sysview.xml
 /content/add_valid_path_to_a_page.qu%65ry.js%6Fn?statement=//*
 /content/add_valid_path_to_a_page.query.json?statement=//*
+/content/add_valid_path_to_a_page.query.json?statement=//* #/(@transportPassword%20|%20@transportUri%20|%20@transportUser)
 /content/add_valid_path_to_a_page.query.json?statement=//*#/(@transportPassword%20|%20@transportUri%20|%20@transportUser)
 /content/add_valid_path_to_a_page.search.json
 /content/add_valid_path_to_a_page.sysview.xml
