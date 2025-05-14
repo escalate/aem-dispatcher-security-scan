@@ -15,13 +15,14 @@ aem-dispatcher-security-scan = "aem_dispatcher_security_scan.cli:cli"
 
 [tool.poetry.dependencies]
 click = "^8.1.0"
-requests = "^2.32.0"
+httpx = "^0.28.1"
+aiofiles = "^24.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.0"
 pytest-cov = "^6.0.0"
 pytest-loguru = "^0.4.0"
-responses = "^0.25.0"
+respx = "^0.22.0"
 
 [tool.black]
 preview = true
