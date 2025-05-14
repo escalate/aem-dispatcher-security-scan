@@ -41,8 +41,8 @@ $ docker compose \
     run \
     --rm \
     aem-dispatcher-security-scan \
-    --host "https://www.example.com" \
-    --page-path "/content/geometrixx/en"
+    --url=https://www.example.com \
+    --page-path=/content/geometrixx/en
 ```
 
 ## Development
