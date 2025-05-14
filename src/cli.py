@@ -1,79 +1,64 @@
 #!/usr/bin/env python
+import asyncio
+import sys
 
 import click
+from loguru import logger
 
-from aem_dispatcher_security_scan.security_scanner import SecurityScanner
+from aem_dispatcher_security_scan.aem_dispatcher_security_scan import (
+    aem_dispatcher_security_scan,
+)
 
 
 @click.command()
 @click.option(
-    "--host",
+    "--url",
     required=True,
-    default="http://localhost:8080",
-    help="Set host of website. "
-    "Leave empty to use default value: http://localhost:8080.",
+    help="URL of website e.g. https://www.example.com",
 )
 @click.option(
     "--page-path",
-    default="/content/geometrixx/en",
-    help="Set path of website. "
-    "Leave empty to use default value: /content/geometrixx/en.",
+    default="/",
+    help="Page path of website. e.g. /content/geometrixx/en (Default: /)",
 )
 @click.option(
     "--timeout",
     default=10,
-    help="Set timeout for http requests in seconds. "
-    "Leave emtpy to use default value: 10.",
+    help="Timeout for HTTP requests in seconds. (Default: 10)",
+)
+@click.option(
+    "--file",
+    default="aem-sec-paths.txt",
+    type=click.Path(exists=True),
+    help="Text file with test paths. (Default: aem-sec-paths.txt)",
 )
 def cli(
-    host,
+    url,
     page_path,
     timeout,
+    file,
 ):
     """
-    Commandline interface for AEM Dispatcher Security Scan
+    AEM Dispatcher Security Scan
     """
 
-    # Instantiate scan
-    scanner = SecurityScanner(host=host, page_path=page_path, request_timeout=timeout)
-
-    # Run security scan
-    print(
-        "Start active security scan of URL {host}{page_path}".format(
-            host=scanner.host, page_path=scanner.page_path
+    loop = asyncio.new_event_loop()
+    loop.run_until_complete(
+        aem_dispatcher_security_scan(
+            url=url,
+            page_path=page_path,
+            timeout=int(timeout),
+            file=file,
         )
     )
-
-    scanner.validate_all_paths_async()
-    results = scanner.results
-    total_scans = len(results)
-
-    vulnerable_results = [r for r in results if r.is_vulnerable is True]
-    total_vulnerable = len(vulnerable_results)
-
-    # Display results
-    if total_vulnerable == 0:
-        print(
-            (
-                "Summary: No security relevant "
-                "AEM Dispatcher URLs found in {total} rules."
-            ).format(total=total_scans)
-        )
-        exit(0)
-    else:
-        print(
-            (
-                "Summary: Found {hit} of {total} security relevant "
-                "AEM Dispatcher URLs.\n\n"
-                "Vulnerable results are: \n{vulnerable_results}"
-            ).format(
-                hit=total_vulnerable,
-                total=total_scans,
-                vulnerable_results="\n".join([str(r) for r in vulnerable_results]),
-            )
-        )
-        exit(1)
+    loop.close()
 
 
 if __name__ == "__main__":
+    logger.remove(0)
+    logger.add(
+        sys.stdout,
+        level="INFO",
+        format='time={time} level={level} msg="{message}"',
+    )
     cli()
