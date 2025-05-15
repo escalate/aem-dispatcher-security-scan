@@ -60,7 +60,7 @@ async def perform_url_test(client: AsyncClient, url: str) -> tuple:
         error_msg = None
     except HTTPError as e:
         status_code = None
-        headers = None
+        headers = {}
         error_msg = f"{type(e).__name__} {e}"
 
     logger.debug(f"URL: '{url}' Status Code: '{status_code}' Error: '{error_msg}'")
@@ -107,7 +107,7 @@ async def aem_dispatcher_security_scan(
             cache_error = 1
 
         if (status_code != codes.NOT_FOUND and cache_error == 0) or (
-            status_code >= 300 and cache_error == 1
+            status_code != codes.OK and cache_error == 1
         ):
             hit_count += 1
 
@@ -133,7 +133,7 @@ async def aem_dispatcher_security_scan(
         cache_error = 1
 
     if (status_code != codes.NOT_FOUND and cache_error == 0) or (
-        status_code >= 300 and cache_error == 1
+        status_code != codes.OK and cache_error == 1
     ):
         hit_count += 1
 
