@@ -34,13 +34,15 @@ async def perform_dispatcher_cache_invalidation_test(
             headers=headers,
         )
         status_code = response.status_code
+        headers = response.headers
         error_msg = None
     except HTTPError as e:
         status_code = None
+        headers = None
         error_msg = e
 
     logger.debug(f"URL: '{url}' Status Code: '{status_code}' Error: '{error_msg}'")
-    return status_code, error_msg
+    return status_code, headers, error_msg
 
 
 async def perform_url_test(client: AsyncClient, url: str) -> tuple:
@@ -52,14 +54,17 @@ async def perform_url_test(client: AsyncClient, url: str) -> tuple:
     """
     try:
         response = await client.get(url)
+
         status_code = response.status_code
+        headers = response.headers
         error_msg = None
     except HTTPError as e:
         status_code = None
+        headers = None
         error_msg = f"{type(e).__name__} {e}"
 
     logger.debug(f"URL: '{url}' Status Code: '{status_code}' Error: '{error_msg}'")
-    return status_code, error_msg
+    return status_code, headers, error_msg
 
 
 async def aem_dispatcher_security_scan(
@@ -90,14 +95,20 @@ async def aem_dispatcher_security_scan(
             path=path.strip().replace("/content/add_valid_path_to_a_page", page_path),
         )
 
-        status_code, error_msg = await perform_url_test(
+        status_code, headers, error_msg = await perform_url_test(
             client=client,
             url=full_url,
         )
         click.echo(".", nl=False)
         total_count += 1
 
-        if status_code != codes.NOT_FOUND:
+        cache_error = 0
+        if headers.get("x-cache") == "Error from cloudfront":
+            cache_error = 1
+
+        if (status_code != codes.NOT_FOUND and cache_error == 0) or (
+            status_code >= 300 and cache_error == 1
+        ):
             hit_count += 1
 
             msg = status_code
@@ -110,13 +121,20 @@ async def aem_dispatcher_security_scan(
         url=url,
     )
 
-    status_code, error_msg = await perform_dispatcher_cache_invalidation_test(
+    status_code, headers, error_msg = await perform_dispatcher_cache_invalidation_test(
         client=client,
         url=dispatcher_url,
     )
+    click.echo(".", nl=False)
     total_count += 1
 
-    if status_code != codes.NOT_FOUND:
+    cache_error = 0
+    if headers.get("x-cache") == "Error from cloudfront":
+        cache_error = 1
+
+    if (status_code != codes.NOT_FOUND and cache_error == 0) or (
+        status_code >= 300 and cache_error == 1
+    ):
         hit_count += 1
 
         msg = status_code
