@@ -56,7 +56,7 @@ async def perform_url_test(client: AsyncClient, url: str) -> tuple:
         error_msg = None
     except HTTPError as e:
         status_code = None
-        error_msg = e
+        error_msg = f"{type(e).__name__} {e}"
 
     logger.debug(f"URL: '{url}' Status Code: '{status_code}' Error: '{error_msg}'")
     return status_code, error_msg
