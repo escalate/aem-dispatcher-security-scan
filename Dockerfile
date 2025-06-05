@@ -12,7 +12,7 @@ ENV POETRY_VIRTUALENVS_PATH=".venv" \
 
 RUN pip install --no-cache-dir --disable-pip-version-check poetry==${POETRY_VERSION} \
     && apt-get update \
-    && apt-get install --no-install-recommends --yes make=* \
+    && apt-get install --no-install-recommends --yes make=* curl=* \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
