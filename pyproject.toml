@@ -16,7 +16,7 @@ aem-dispatcher-security-scan = "aem_dispatcher_security_scan.cli:cli"
 [tool.poetry.dependencies]
 click = "^8.2.0"
 httpx = "^0.28.1"
-aiofiles = "^24.1.0"
+aiofiles = "^25.0.0"
 loguru = "^0.7.3"
 
 [tool.poetry.group.dev.dependencies]
