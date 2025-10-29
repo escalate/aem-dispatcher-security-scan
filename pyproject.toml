@@ -7,7 +7,7 @@ authors = [
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.13, <4.0"
+requires-python = ">=3.14, <4.0"
 dynamic = ["dependencies"]
 
 [project.scripts]
