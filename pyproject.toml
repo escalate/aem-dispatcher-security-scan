@@ -5,7 +5,9 @@ description = "A commandline tool to perfom an active security scan against a AE
 authors = [
     { name = "Felix Börner" }
 ]
-license = { text = "MIT" }
+license-files = [
+    "LICENSE"
+]
 readme = "README.md"
 requires-python = ">=3.14, <4.0"
 dynamic = ["dependencies"]
@@ -15,9 +17,9 @@ aem-dispatcher-security-scan = "aem_dispatcher_security_scan.cli:cli"
 
 [tool.poetry.dependencies]
 click = "^8.2.0"
+loguru = "^0.7.0"
 httpx = "^0.28.1"
 aiofiles = "^25.0.0"
-loguru = "^0.7.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.0"
