@@ -117,9 +117,7 @@ async def aem_dispatcher_security_scan(
 
             hits.append(f"URL: {full_url} -> Result: {msg}")
 
-    dispatcher_url = "{url}/dispatcher/invalidate.cache".format(
-        url=url,
-    )
+    dispatcher_url = f"{url}/dispatcher/invalidate.cache"
 
     status_code, headers, error_msg = await perform_dispatcher_cache_invalidation_test(
         client=client,
